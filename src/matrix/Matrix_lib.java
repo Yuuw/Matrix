@@ -9,13 +9,13 @@ public class Matrix_lib {
 		double t[][] = this.getTranspose(b);
 		for(int i = 0;i < a.length;i++) {
 			for(int j = 0;j < b[0].length;j++) {
-				answer[i][j] = this.getInnnerProduct(a[i], t[j]);
+				answer[i][j] = this.getInnerProduct(a[i], t[j]);
 			}
 		}
 		return answer;
 	}
 
-	public double getInnnerProduct(double a[],double b[]) {
+	public double getInnerProduct(double a[],double b[]) {
 		double answer = 0;
 		for(int i = 0;i < a.length;i++) {
 			answer += a[i] * b[i];
@@ -60,7 +60,7 @@ public class Matrix_lib {
 		return cofactor;
 	}
 	
-	public double [][]getlnverse(double[][]a){
+	public double [][]getInverse(double[][]a){
 		double answer[][] = new double[a.length][a[0].length];
 		double tmp[][] = new double[a.length-1][a[0].length-1];
 		double determinant = this.getCofactor(a);
@@ -83,4 +83,16 @@ public class Matrix_lib {
 	    answer = this.getTranspose(answer);
 		return answer;
 	}
+	
+	public double []getSolution(double[][]a,double []b){
+	 double answer[] = new double [b.length];
+	 a = this.getInverse(a);
+	 for(int i = 0;i  < a.length;i++) {
+		 for (int j =0;j < a[0].length;j++) {
+			 answer[i] += a[i][j] * b[j]; 
+		 }
+	 }
+	 return answer;
 }
+
+}	
